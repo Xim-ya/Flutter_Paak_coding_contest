@@ -8,3 +8,7 @@ final Map<int, ButtonSource> buttonDefaults = {
       color: kLPinkColor, iconData: Icons.favorite_border, action: () {}),
   2: ButtonSource(color: kLLimeColor, iconData: Icons.search, action: () {})
 };
+
+/* Animation Controller & Source  (MainScreen > MemoList)*/
+final scrollController = ScrollController();
+const Duration listShowItemDuration = Duration(milliseconds: 250);

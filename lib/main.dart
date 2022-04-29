@@ -1,8 +1,17 @@
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
+import 'package:device_preview/device_preview.dart';
 
 void main() {
   runApp(const MyApp());
 }
+
+// Device Preview 셋업 (반응형 확인)
+// void main() => runApp(
+//       DevicePreview(
+//         enabled: !kReleaseMode,
+//         builder: (context) => const MyApp(),
+//       ),
+//     );
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

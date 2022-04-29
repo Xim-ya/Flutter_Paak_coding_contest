@@ -2,9 +2,7 @@ import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class RoundedIconButton extends StatelessWidget {
   final int identifier;
-  final IconData icon;
-  const RoundedIconButton(
-      {Key? key, required this.identifier, required this.icon})
+  const RoundedIconButton({Key? key, required this.identifier})
       : super(key: key);
 
   @override

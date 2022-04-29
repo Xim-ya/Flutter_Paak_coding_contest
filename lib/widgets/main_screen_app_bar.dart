@@ -23,6 +23,17 @@ class MainScreenAppBar extends StatelessWidget {
             )),
           ),
           Spacer(),
+          Container(
+            padding: const EdgeInsets.only(top: 100, bottom: 0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: const [
+                RoundedIconButton(identifier: 0),
+                RoundedIconButton(identifier: 1),
+                RoundedIconButton(identifier: 2),
+              ],
+            ),
+          ),
         ],
       ),
     );
