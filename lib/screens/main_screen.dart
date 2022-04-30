@@ -1,4 +1,3 @@
-import 'package:park_coding_contest_memo_app/screens/add_edit_screen.dart';
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MainScreen extends StatelessWidget {
@@ -13,7 +12,7 @@ class MainScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: NeumorphicFloatingActionButton(
         onPressed: () {
-          Get.to(() => const AddEditScreen());
+          Get.to(() => AddEditScreen(memoVM: _memoVM));
         },
         child: const Icon(Icons.add),
       ),
@@ -23,20 +22,24 @@ class MainScreen extends StatelessWidget {
           /* App Bar */
           const MainScreenAppBar(),
           /* Memo List */
-          LiveSliverList(
-              controller: scrollController,
-              showItemDuration: listShowItemDuration,
-              itemCount: _memoVM.memoList.length,
-              itemBuilder: (context, index, animation) {
-                return Column(
-                  children: [
-                    MemoAnimationBuilder(
-                        context: context,
-                        index: index,
-                        animation: animation,
-                        memoVM: _memoVM),
-                  ],
-                );
+          GetBuilder<MemoVM>(
+              init: _memoVM,
+              builder: (context) {
+                return LiveSliverList(
+                    controller: scrollController,
+                    showItemDuration: listShowItemDuration,
+                    itemCount: _memoVM.memoList.length,
+                    itemBuilder: (context, index, animation) {
+                      return Column(
+                        children: [
+                          MemoAnimationBuilder(
+                              context: context,
+                              index: index,
+                              animation: animation,
+                              memoVM: _memoVM),
+                        ],
+                      );
+                    });
               }),
         ],
       ),

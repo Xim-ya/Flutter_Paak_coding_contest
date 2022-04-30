@@ -20,22 +20,19 @@ final List<Memo> memoItems = [
     title: "제목1",
     content: "내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1",
     date: DateTime.now(),
-    isFavorite: false,
     isSecret: false,
   ),
   Memo(
     id: const Uuid(),
     content: "내용이 들어갑니다2, 내용이 들어갑니다2, 내용이 들어갑니다2, 내용이 들어갑니다2",
     date: DateTime.now(),
-    isFavorite: false,
-    isSecret: false,
+    isSecret: true,
   ),
   Memo(
     id: const Uuid(),
     title: "제목3",
     content: "내용이 들어갑니다1, 내용이 들어갑니다3, 내용이 들어갑니다3, 내용이 들어갑니다1",
     date: DateTime.now(),
-    isFavorite: false,
     isSecret: false,
   ),
 ];

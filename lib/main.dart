@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Memo App',
       theme: ThemeData(backgroundColor: kL1BackgroundColor),
       themeMode: ThemeMode.light,
-      home: AddEditScreen(),
+      home: MainScreen(),
     );
   }
 }

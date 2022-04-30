@@ -14,10 +14,12 @@ class FontStyles {
             color: kLAccentColor, fontSize: 18, fontWeight: FontWeight.bold),
         memoTitle = const TextStyle(
             color: kLAccentColor, fontSize: 16, fontWeight: FontWeight.bold),
-        memoContentText = const TextStyle(color: kLSubTextColor);
+        memoContentText = const TextStyle(color: kLSubTextColor),
+        dateAppbarTitle = const TextStyle(color: kLSubTextColor, fontSize: 13);
 
   late final TextStyle memoDate;
   late final TextStyle memoTitle;
   late final TextStyle appBarTitle;
   late final TextStyle memoContentText;
+  late final TextStyle dateAppbarTitle;
 }

@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MemoItem extends StatelessWidget {
@@ -29,17 +28,11 @@ class MemoItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                alignment: Alignment.topRight,
-                child: Builder(builder: (context) {
-                  String formatDate =
-                      DateFormat("yyyy년 MM월 dd일").format(memo.date);
-
-                  return Text(
-                    formatDate,
-                    style: FontStyles().memoDate,
-                  );
-                }),
-              ), // Date
+                  alignment: Alignment.topRight,
+                  child: FormatDateText(
+                    date: memo.date,
+                    textStyle: FontStyles().memoDate,
+                  )), // Date
               Text(memo.title ?? "제목이 없습니다",
                   style: FontStyles().memoTitle), // Title
               Text(memo.content,

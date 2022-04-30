@@ -45,7 +45,6 @@ class MemoAnimationBuilder extends StatelessWidget {
           child: MemoItem(
               memo: Memo(
                   isSecret: selectedItem.isSecret,
-                  isFavorite: selectedItem.isFavorite,
                   title: selectedItem.title,
                   content: selectedItem.content,
                   date: selectedItem.date,
