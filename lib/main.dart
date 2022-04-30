@@ -19,23 +19,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return NeumorphicApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Memo App',
+      theme: ThemeData(backgroundColor: kL1BackgroundColor),
       themeMode: ThemeMode.light,
-      theme: NeumorphicThemeData(
-        baseColor: kLBackgroundColor,
-        accentColor: kLAccentColor,
-        lightSource: LightSource.topLeft,
-        depth: 10,
-      ),
-      darkTheme: NeumorphicThemeData(
-        baseColor: kDBackgroundColor,
-        accentColor: kDAccentColor,
-        lightSource: LightSource.topLeft,
-        depth: 6,
-      ),
-      home: MainScreen(),
+      home: AddEditScreen(),
     );
   }
 }

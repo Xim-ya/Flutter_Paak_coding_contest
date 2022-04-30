@@ -11,6 +11,7 @@ class MemoItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: NeumorphicButton(
         style: const NeumorphicStyle(
+          color: kL1BackgroundColor,
           depth: 4,
           border: NeumorphicBorder(
             color: kLBoxBorderColor,

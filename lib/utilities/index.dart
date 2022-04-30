@@ -10,6 +10,7 @@ export 'package:get/get.dart';
 
 /* Screens */
 export 'package:park_coding_contest_memo_app/screens/main_screen.dart';
+export 'package:park_coding_contest_memo_app/screens/add_edit_screen.dart';
 
 /* Widgets */
 export 'package:park_coding_contest_memo_app/widgets/main_screen_app_bar.dart';

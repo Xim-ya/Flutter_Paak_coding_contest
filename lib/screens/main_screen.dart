@@ -1,3 +1,4 @@
+import 'package:park_coding_contest_memo_app/screens/add_edit_screen.dart';
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MainScreen extends StatelessWidget {
@@ -8,9 +9,12 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: NeumorphicTheme.baseColor(context),
+      // backgroundColor: NeumorphicTheme.baseColor(context),
+      backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: NeumorphicFloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Get.to(() => const AddEditScreen());
+        },
         child: const Icon(Icons.add),
       ),
       body: CustomScrollView(

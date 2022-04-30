@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /* Light Mode */
 const Color kLBackgroundColor = Color(0xFFF0F0F3);
+const Color kL1BackgroundColor = Color(0xFFDDE6E8);
 const Color kLAccentColor = Color(0xFF808B9F);
 const Color kLSubTextColor = Color(0xFFA2AFC7);
 const Color kLBoxBorderColor = Color(0xFFEBEBEB);

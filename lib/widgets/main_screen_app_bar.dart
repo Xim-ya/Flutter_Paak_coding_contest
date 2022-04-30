@@ -10,7 +10,7 @@ class MainScreenAppBar extends StatelessWidget {
       floating: false,
       pinned: true,
       expandedHeight: 120,
-      backgroundColor: NeumorphicTheme.baseColor(context),
+      backgroundColor: Theme.of(context).backgroundColor,
       flexibleSpace: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
