@@ -9,7 +9,7 @@ class RoundedIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final buttonSource = buttonDefaults[identifier]!;
     return Container(
-      margin: EdgeInsets.only(right: 8),
+      margin: const EdgeInsets.only(right: 8),
       child: NeumorphicButton(
         style: NeumorphicStyle(
           depth: 4,

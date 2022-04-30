@@ -1,11 +1,12 @@
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  // const MainScreen({Key? key}) : super(key: key);
+
+  final _memoVM = Get.put(MemoVM(model: MemoCore()));
 
   @override
   Widget build(BuildContext context) {
-    const int listItemCount = 20;
     return Scaffold(
       backgroundColor: NeumorphicTheme.baseColor(context),
       floatingActionButton: NeumorphicFloatingActionButton(
@@ -21,10 +22,17 @@ class MainScreen extends StatelessWidget {
           LiveSliverList(
               controller: scrollController,
               showItemDuration: listShowItemDuration,
-              itemCount: listItemCount,
+              itemCount: _memoVM.memoList.length,
               itemBuilder: (context, index, animation) {
-                return MemoAnimationBuilder(
-                    context: context, index: index, animation: animation);
+                return Column(
+                  children: [
+                    MemoAnimationBuilder(
+                        context: context,
+                        index: index,
+                        animation: animation,
+                        memoVM: _memoVM),
+                  ],
+                );
               }),
         ],
       ),
