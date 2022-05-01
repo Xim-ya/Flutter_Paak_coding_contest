@@ -49,6 +49,7 @@ class MemoVM extends GetxController {
         break;
       case 2:
         Get.to(() => SearchScreen(memoVM: memoVM!));
+
         break;
     }
   }

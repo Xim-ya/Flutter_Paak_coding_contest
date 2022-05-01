@@ -86,8 +86,8 @@ class CreatePasswordScreen extends HookWidget {
                     firstPassword.value == secondPassword.value) {
                   Box<User> userBox = Hive.box<User>('user');
                   User user = User(
-                      password: firstPassword.value, didRegister: true, id: 0);
-                  userBox.putAt(0, user);
+                      password: firstPassword.value, didRegister: true, id: 1);
+                  userBox.add(user);
                   Get.back();
                 } else {
                   MultipleDialogNSnackBar.wrongPassword(context);
