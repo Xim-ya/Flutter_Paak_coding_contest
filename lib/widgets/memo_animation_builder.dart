@@ -16,7 +16,12 @@ class MemoAnimationBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final selectedMemo = memoVM.memoList[index];
+    final selectedMemo = memoVM.memoList.getAt(index);
+    void someAction(BuildContext context) {
+      print("AIM");
+      memoVM.deleteMemo(selectedMemo!.id);
+    }
+
     return FadeTransition(
       opacity: Tween<double>(
         begin: 0,
@@ -31,10 +36,12 @@ class MemoAnimationBuilder extends StatelessWidget {
           key: const ValueKey(0),
           startActionPane: ActionPane(
             motion: const ScrollMotion(),
-            dismissible: DismissiblePane(onDismissed: () {}),
-            children: const [
+            // dismissible: DismissiblePane(onDismissed: () {
+            //   memoVM.deleteMemo(selectedMemo!.id);
+            // }),
+            children: [
               SlidableAction(
-                onPressed: null,
+                onPressed: someAction,
                 backgroundColor: Color(0xFFFE4A49),
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
@@ -46,7 +53,7 @@ class MemoAnimationBuilder extends StatelessWidget {
               memoVM: memoVM,
               index: index,
               memo: Memo(
-                  isSecret: selectedMemo.isSecret,
+                  isSecret: selectedMemo!.isSecret,
                   date: selectedMemo.date,
                   id: selectedMemo.id,
                   content: selectedMemo.content,

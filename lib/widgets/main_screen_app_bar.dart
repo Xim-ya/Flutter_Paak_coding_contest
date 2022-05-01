@@ -30,7 +30,6 @@ class MainScreenAppBar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 RoundedIconButton(identifier: 0, memoVM: memoVM),
-                RoundedIconButton(identifier: 1, memoVM: memoVM),
                 RoundedIconButton(identifier: 2, memoVM: memoVM),
               ],
             ),

@@ -8,7 +8,6 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: NeumorphicTheme.baseColor(context),
       backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: NeumorphicFloatingActionButton(
         onPressed: () {
@@ -21,6 +20,7 @@ class MainScreen extends StatelessWidget {
         slivers: <Widget>[
           /* App Bar */
           MainScreenAppBar(memoVM: _memoVM),
+
           /* Memo List */
           GetBuilder<MemoVM>(
             init: _memoVM,

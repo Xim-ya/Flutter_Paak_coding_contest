@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MemoItem extends StatelessWidget {
@@ -11,6 +12,11 @@ class MemoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void getToDetailScreen() {
+      memoVM.selectedId = memo.id;
+      Get.to(() => AddEditScreen(memoVM: memoVM, isEditApproach: true));
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
@@ -26,8 +32,13 @@ class MemoItem extends StatelessWidget {
             ),
             margin: const EdgeInsets.only(top: 10, bottom: 10),
             onPressed: () {
-              memoVM.selectedId = memo.id;
-              Get.to(() => AddEditScreen(memoVM: memoVM, isEditApproach: true));
+              if (memo.isSecret) {
+                memoVM.selectedId = memo.id;
+                MultipleDialogNSnackBar.showEnterPasswordDialog(
+                    context, getToDetailScreen);
+              } else {
+                getToDetailScreen();
+              }
             },
             child: Container(
               padding:
@@ -43,15 +54,21 @@ class MemoItem extends StatelessWidget {
                         date: memo.date,
                         textStyle: FontStyles().memoDate,
                       )), // Date
-                  Text(memo.title == "" ? "제목이 없습니다" : memo.title,
-                      style: FontStyles().memoTitle), // Title
+                  Text(
+                    memo.title == "" ? "제목이 없습니다" : memo.title,
+                    style: FontStyles().memoTitle,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ), // Title
                   Text(memo.content,
-                      maxLines: 1, style: FontStyles().memoContentText)
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: FontStyles().memoContentText)
                 ],
               ),
             ),
           ),
-          false
+          memo.isSecret
               ? Positioned(
                   child: AnimatedContainer(
                     duration: Duration(seconds: 2),

@@ -1,7 +1,14 @@
+import 'package:park_coding_contest_memo_app/models/user_model.dart';
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 import 'package:device_preview/device_preview.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter(MemoAdapter());
+  Hive.registerAdapter(UserAdapter());
+  await Hive.openBox<Memo>("memo");
+  await Hive.openBox<User>("user");
+
   runApp(const MyApp());
 }
 

@@ -1,11 +1,14 @@
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
-import 'package:park_coding_contest_memo_app/widgets/multiple_alert_dialogs.dart';
 
 class EditSaveToggleButton extends StatelessWidget {
+  final MemoVM memoVM;
   final ValueNotifier<bool> canEdit;
   final Memo memo;
   const EditSaveToggleButton(
-      {Key? key, required this.canEdit, required this.memo})
+      {Key? key,
+      required this.canEdit,
+      required this.memo,
+      required this.memoVM})
       : super(key: key);
 
   @override
@@ -15,26 +18,16 @@ class EditSaveToggleButton extends StatelessWidget {
       child: NeumorphicButton(
         onPressed: () {
           if (canEdit.value) {
-            // 수정 가능 "완료"
             if (memo.content.isEmpty) {
-              MultipleAlertDialogs.addEventDialog(context);
+              MultipleDialogNSnackBar.showAlertIndicator(context);
             } else {
-              canEdit.value = false;
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text("수정 완료!"),
-                  duration: Duration(seconds: 1),
-                ),
-              );
+              memoVM.updateMemo(memo);
+              print(memo.title);
+              MultipleDialogNSnackBar.showSnackBar(context, "수정 완료!");
             }
           } else {
             canEdit.value = true;
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text("수정 모드"),
-                duration: Duration(seconds: 1),
-              ),
-            );
+            MultipleDialogNSnackBar.showSnackBar(context, "수정 모드");
           }
         },
         style: const NeumorphicStyle(

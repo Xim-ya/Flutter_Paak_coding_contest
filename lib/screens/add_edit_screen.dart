@@ -1,4 +1,5 @@
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
+import 'package:park_coding_contest_memo_app/widgets/lock_unLock_toggle_button.dart';
 
 class AddEditScreen extends HookWidget {
   final MemoVM memoVM;
@@ -17,6 +18,7 @@ class AddEditScreen extends HookWidget {
     final _isLocked =
         useState<bool>(isEditApproach ? memoVM.selectedMemo!.isSecret : false);
     final _canEdit = useState<bool>(isEditApproach ? false : true);
+    final int selectedKey = isEditApproach ? memoVM.selectedMemo!.id : 100;
 
     return Scaffold(
       appBar: AppBar(
@@ -30,65 +32,42 @@ class AddEditScreen extends HookWidget {
         ),
         actions: [
           /* Lock & Unlock Button */
-          Container(
-            alignment: Alignment.center,
-            child: NeumorphicButton(
-              onPressed: () {
-                _isLocked.value = !_isLocked.value;
-              },
-              style: const NeumorphicStyle(
-                  depth: 2, boxShape: NeumorphicBoxShape.circle()),
-              child: SizedBox(
-                height: 22,
-                child: Align(
-                  child: Icon(
-                    _isLocked.value ? Icons.lock_outline : Icons.lock_open,
-                    color: _isLocked.value ? kLPinkColor : kLLimeColor,
-                  ),
-                ),
-              ),
-            ),
+          LockUnLockToggleButton(
+            isLocked: _isLocked,
           ),
-          /* Edit Save Button */
-          Builder(builder: (context) {
-            final Memo handledMemo = Memo(
-                title: _titleInput.value,
-                isSecret: _isLocked.value,
-                id: 4,
-                content: _contentInput.value,
-                date: DateTime.now());
-            final isContentFilled = _contentInput.value.isNotEmpty;
-            return isEditApproach
-                ? EditSaveToggleButton(canEdit: _canEdit, memo: handledMemo)
-                : Container(
-                    alignment: Alignment.center,
-                    child: NeumorphicButton(
-                      onPressed: () {
-                        if (isContentFilled) {
-                          memoVM.addMemo(handledMemo);
-                          Get.back();
-                        } else {
-                          MultipleAlertDialogs.addEventDialog(context);
-                        }
-                      },
-                      style: NeumorphicStyle(
-                          depth: isContentFilled ? 2 : 0,
-                          boxShape: const NeumorphicBoxShape.circle()),
-                      child: SizedBox(
-                        height: 20,
-                        child: Align(
-                          child: Text(
-                            "저장",
-                            style: TextStyle(
-                                color: isContentFilled
-                                    ? kLPurpleColor
-                                    : Colors.grey),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-          }),
+          /* Edit Save && Save Complete  Buttons  */
+          Builder(
+            builder: (context) {
+              int id = 0;
+              final memoList = memoVM.memoList;
+              if (memoList.isNotEmpty) {
+                final prevItem = memoList.getAt(memoList.length - 1);
+                id = prevItem!.id + 1;
+              }
+
+              final Memo handledMemo = Memo(
+                  title: _titleInput.value,
+                  isSecret: _isLocked.value,
+                  id: id,
+                  content: _contentInput.value,
+                  date: DateTime.now());
+
+              final Memo editedMEmo = Memo(
+                  title: _titleInput.value,
+                  isSecret: _isLocked.value,
+                  id: selectedKey,
+                  content: _contentInput.value,
+                  date: DateTime.now());
+              final isContentFilled = _contentInput.value.isNotEmpty;
+              return isEditApproach
+                  ? EditSaveToggleButton(
+                      canEdit: _canEdit, memo: editedMEmo, memoVM: memoVM)
+                  : SaveCompleteToggleButton(
+                      memoVM: memoVM,
+                      isContentFilled: isContentFilled,
+                      handledMemo: handledMemo);
+            },
+          ),
         ],
         leading: const RoundedBackButton(),
         backgroundColor: Theme.of(context).backgroundColor,

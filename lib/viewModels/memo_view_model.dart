@@ -6,16 +6,16 @@ class MemoVM extends GetxController {
   List<Memo> searchedMemoList = [];
 
   /* Connect to Model */
-  MemoCore _model;
+  final MemoCore _model;
   MemoVM({required MemoCore model}) : _model = model;
 
   /* Instance */
-  List<Memo> get memoList {
+  Box<Memo> get memoList {
     return _model.memoList;
   }
 
   Memo? get selectedMemo {
-    final memo = _model.memoList.firstWhereOrNull((e) => e.id == selectedId);
+    final memo = _model.memoList.get(selectedId);
     return memo;
   }
 
@@ -25,13 +25,27 @@ class MemoVM extends GetxController {
     update();
   }
 
+  void deleteMemo(int id) {
+    _model.deleteMemo(id);
+    update();
+  }
+
+  void updateMemo(Memo memo) {
+    _model.updateMemo(memo);
+    update();
+  }
+
+  void deleteAllMemo() {
+    _model.deleteAllMemo();
+    update();
+  }
+
   void groupButtonActions(int id, MemoVM? memoVM) {
     switch (id) {
       case 0:
-        print("delete Actions");
+        deleteAllMemo();
         break;
       case 1:
-        print("delete Actions");
         break;
       case 2:
         Get.to(() => SearchScreen(memoVM: memoVM!));
@@ -39,24 +53,10 @@ class MemoVM extends GetxController {
     }
   }
 
-  void searchHandler(String inputs) {
-    List<Memo> tempSearchedList = <Memo>[];
-    tempSearchedList.addAll(_model.memoList);
-    if (inputs.isNotEmpty) {
-      List<Memo> dummyListData = <Memo>[];
-      for (var item in tempSearchedList) {
-        if (item.content.contains(inputs) || item.title.contains(inputs)) {
-          dummyListData.add(item);
-        }
-      }
-      searchedMemoList.clear();
-      searchedMemoList.addAll(dummyListData);
-      update();
-      return;
-    } else {
-      searchedMemoList.clear();
-      searchedMemoList.addAll(_model.memoList);
-      update();
-    }
+  void route() {}
+
+  @override
+  void onInit() async {
+    super.onInit();
   }
 }

@@ -14,26 +14,26 @@ final scrollController = ScrollController();
 const Duration listShowItemDuration = Duration(milliseconds: 250);
 
 /* Memo Sample Data (MainScreen > MemoList) */
-final List<Memo> memoItems = [
-  Memo(
-    id: 0,
-    title: "제목1",
-    content: "내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1",
-    date: DateTime.now(),
-    isSecret: false,
-  ),
-  Memo(
-    id: 1,
-    title: '',
-    content: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
-    date: DateTime.now(),
-    isSecret: true,
-  ),
-  Memo(
-    id: 2,
-    title: "제목3",
-    content: "내용이 들어갑니다1, 내용이 들어갑니다3, 내용이 들어갑니다3, 내용이 들어갑니다1",
-    date: DateTime.now(),
-    isSecret: false,
-  ),
-];
+// final List<Memo> memoItems = [
+//   Memo(
+//     id: 0,
+//     title: "제목1",
+//     content: "내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1",
+//     date: DateTime.now(),
+//     isSecret: false,
+//   ),
+//   Memo(
+//     id: 1,
+//     title: '',
+//     content: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+//     date: DateTime.now(),
+//     isSecret: true,
+//   ),
+//   Memo(
+//     id: 2,
+//     title: "제목3",
+//     content: "내용이 들어갑니다1, 내용이 들어갑니다3, 내용이 들어갑니다3, 내용이 들어갑니다1",
+//     date: DateTime.now(),
+//     isSecret: false,
+//   ),
+// ];
