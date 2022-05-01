@@ -24,6 +24,7 @@ final List<Memo> memoItems = [
   ),
   Memo(
     id: 1,
+    title: '',
     content: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
     date: DateTime.now(),
     isSecret: true,

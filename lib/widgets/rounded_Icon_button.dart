@@ -2,7 +2,9 @@ import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class RoundedIconButton extends StatelessWidget {
   final int identifier;
-  const RoundedIconButton({Key? key, required this.identifier})
+  final MemoVM memoVM;
+  const RoundedIconButton(
+      {Key? key, required this.identifier, required this.memoVM})
       : super(key: key);
 
   @override
@@ -19,7 +21,9 @@ class RoundedIconButton extends StatelessWidget {
             width: 0.6,
           ),
         ),
-        onPressed: () {},
+        onPressed: () {
+          memoVM.groupButtonActions(identifier, memoVM);
+        },
         child: Icon(buttonSource.iconData, color: buttonSource.color),
       ),
     );

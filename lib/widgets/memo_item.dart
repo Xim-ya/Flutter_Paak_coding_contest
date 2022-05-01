@@ -3,13 +3,14 @@ import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MemoItem extends StatelessWidget {
   final MemoVM memoVM;
+  final Memo memo;
   final int index;
-  const MemoItem({Key? key, required this.memoVM, required this.index})
+  const MemoItem(
+      {Key? key, required this.memoVM, required this.index, required this.memo})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final Memo selectedItem = memoVM.memoList[index];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
@@ -25,7 +26,7 @@ class MemoItem extends StatelessWidget {
             ),
             margin: const EdgeInsets.only(top: 10, bottom: 10),
             onPressed: () {
-              memoVM.selectedId = selectedItem.id;
+              memoVM.selectedId = memo.id;
               Get.to(() => AddEditScreen(memoVM: memoVM, isEditApproach: true));
             },
             child: Container(
@@ -39,12 +40,12 @@ class MemoItem extends StatelessWidget {
                   Container(
                       alignment: Alignment.topRight,
                       child: FormatDateText(
-                        date: selectedItem.date,
+                        date: memo.date,
                         textStyle: FontStyles().memoDate,
                       )), // Date
-                  Text(selectedItem.title ?? "제목이 없습니다",
+                  Text(memo.title == "" ? "제목이 없습니다" : memo.title,
                       style: FontStyles().memoTitle), // Title
-                  Text(selectedItem.content,
+                  Text(memo.content,
                       maxLines: 1, style: FontStyles().memoContentText)
                 ],
               ),

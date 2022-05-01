@@ -10,7 +10,7 @@ class MemoCore {
 
 class Memo {
   final int id;
-  final String? title;
+  final String title;
   final String content;
   final DateTime date;
 
@@ -18,7 +18,7 @@ class Memo {
 
   Memo({
     required this.id,
-    this.title,
+    required this.title,
     required this.content,
     required this.date,
     required this.isSecret,

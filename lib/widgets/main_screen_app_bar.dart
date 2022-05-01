@@ -1,7 +1,8 @@
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
 
 class MainScreenAppBar extends StatelessWidget {
-  const MainScreenAppBar({Key? key}) : super(key: key);
+  final MemoVM memoVM;
+  const MainScreenAppBar({Key? key, required this.memoVM}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,10 +28,10 @@ class MainScreenAppBar extends StatelessWidget {
             padding: const EdgeInsets.only(top: 100, bottom: 0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
-              children: const [
-                RoundedIconButton(identifier: 0),
-                RoundedIconButton(identifier: 1),
-                RoundedIconButton(identifier: 2),
+              children: [
+                RoundedIconButton(identifier: 0, memoVM: memoVM),
+                RoundedIconButton(identifier: 1, memoVM: memoVM),
+                RoundedIconButton(identifier: 2, memoVM: memoVM),
               ],
             ),
           ),

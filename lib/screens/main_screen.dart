@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
         controller: scrollController,
         slivers: <Widget>[
           /* App Bar */
-          const MainScreenAppBar(),
+          MainScreenAppBar(memoVM: _memoVM),
           /* Memo List */
           GetBuilder<MemoVM>(
             init: _memoVM,

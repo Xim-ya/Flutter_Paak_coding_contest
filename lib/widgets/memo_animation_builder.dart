@@ -16,7 +16,7 @@ class MemoAnimationBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Memo selectedItem = memoVM.memoList[index];
+    final selectedMemo = memoVM.memoList[index];
     return FadeTransition(
       opacity: Tween<double>(
         begin: 0,
@@ -42,7 +42,15 @@ class MemoAnimationBuilder extends StatelessWidget {
               ),
             ],
           ),
-          child: MemoItem(memoVM: memoVM, index: index),
+          child: MemoItem(
+              memoVM: memoVM,
+              index: index,
+              memo: Memo(
+                  isSecret: selectedMemo.isSecret,
+                  date: selectedMemo.date,
+                  id: selectedMemo.id,
+                  content: selectedMemo.content,
+                  title: selectedMemo.title)),
         ),
       ),
     );

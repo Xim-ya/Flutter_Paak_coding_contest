@@ -1,7 +1,4 @@
-import 'dart:io' show Platform;
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
-import 'package:park_coding_contest_memo_app/widgets/edit_save_toggle_button.dart';
-import 'package:park_coding_contest_memo_app/widgets/multiple_alert_dialogs.dart';
 
 class AddEditScreen extends HookWidget {
   final MemoVM memoVM;
@@ -14,7 +11,7 @@ class AddEditScreen extends HookWidget {
   Widget build(BuildContext context) {
     // State Variables
     final _titleInput =
-        useState<String?>(isEditApproach ? memoVM.selectedMemo?.title : null);
+        useState<String>(isEditApproach ? memoVM.selectedMemo!.title : "");
     final _contentInput =
         useState<String>(isEditApproach ? memoVM.selectedMemo!.content : "");
     final _isLocked =
@@ -93,22 +90,7 @@ class AddEditScreen extends HookWidget {
                   );
           }),
         ],
-        leading: Container(
-          margin: const EdgeInsets.only(left: 20),
-          child: NeumorphicButton(
-            onPressed: () {
-              Get.back();
-            },
-            style: const NeumorphicStyle(boxShape: NeumorphicBoxShape.circle()),
-            child: Center(
-              child: NeumorphicIcon(
-                Icons.arrow_back,
-                style: const NeumorphicStyle(color: kLAccentColor),
-                size: 20,
-              ),
-            ),
-          ),
-        ),
+        leading: const RoundedBackButton(),
         backgroundColor: Theme.of(context).backgroundColor,
         elevation: 0,
       ),
@@ -131,6 +113,7 @@ class AddEditScreen extends HookWidget {
                           _titleInput.value = inputs;
                         },
                         style: const TextStyle(fontWeight: FontWeight.bold),
+                        cursorColor: kLAccentColor,
                         decoration: InputDecoration(
                           hintText: "제목을 입력하세요(선택)",
                           enabledBorder: const UnderlineInputBorder(
@@ -158,6 +141,7 @@ class AddEditScreen extends HookWidget {
                             onChanged: (inputs) {
                               _contentInput.value = inputs;
                             },
+                            cursorColor: kLAccentColor,
                             scrollPhysics: const NeverScrollableScrollPhysics(),
                             textInputAction: TextInputAction.newline,
                             minLines: null,
