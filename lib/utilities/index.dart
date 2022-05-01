@@ -16,7 +16,7 @@ export 'package:park_coding_contest_memo_app/screens/add_edit_screen.dart';
 /* Widgets */
 export 'package:park_coding_contest_memo_app/widgets/main_screen_app_bar.dart';
 export 'package:park_coding_contest_memo_app/widgets/rounded_Icon_button.dart';
-export 'package:park_coding_contest_memo_app/widgets/memo_list_item.dart';
+export 'package:park_coding_contest_memo_app/widgets/memo_item.dart';
 export 'package:park_coding_contest_memo_app/widgets/memo_animation_builder.dart';
 export 'package:park_coding_contest_memo_app/widgets/format_date_text.dart';
 

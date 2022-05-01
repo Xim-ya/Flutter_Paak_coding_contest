@@ -12,7 +12,7 @@ class MainScreen extends StatelessWidget {
       backgroundColor: Theme.of(context).backgroundColor,
       floatingActionButton: NeumorphicFloatingActionButton(
         onPressed: () {
-          Get.to(() => AddEditScreen(memoVM: _memoVM));
+          Get.to(() => AddEditScreen(memoVM: _memoVM, isEditApproach: false));
         },
         child: const Icon(Icons.add),
       ),
@@ -23,24 +23,26 @@ class MainScreen extends StatelessWidget {
           const MainScreenAppBar(),
           /* Memo List */
           GetBuilder<MemoVM>(
-              init: _memoVM,
-              builder: (context) {
-                return LiveSliverList(
-                    controller: scrollController,
-                    showItemDuration: listShowItemDuration,
-                    itemCount: _memoVM.memoList.length,
-                    itemBuilder: (context, index, animation) {
-                      return Column(
-                        children: [
-                          MemoAnimationBuilder(
-                              context: context,
-                              index: index,
-                              animation: animation,
-                              memoVM: _memoVM),
-                        ],
-                      );
-                    });
-              }),
+            init: _memoVM,
+            builder: (context) {
+              return LiveSliverList(
+                controller: scrollController,
+                showItemDuration: listShowItemDuration,
+                itemCount: _memoVM.memoList.length,
+                itemBuilder: (context, index, animation) {
+                  return Column(
+                    children: [
+                      MemoAnimationBuilder(
+                          context: context,
+                          index: index,
+                          animation: animation,
+                          memoVM: _memoVM),
+                    ],
+                  );
+                },
+              );
+            },
+          ),
         ],
       ),
     );

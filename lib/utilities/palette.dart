@@ -9,6 +9,7 @@ const Color kLBoxBorderColor = Color(0xFFEBEBEB);
 const Color kLPinkColor = Color(0xFFFB7575);
 const Color kLPurpleColor = Color(0xFFC590EF);
 const Color kLLimeColor = Color(0xFF83DBD6);
+const Color kLOrange = Color(0xFF30CC2D);
 
 /* Dark Mode */
 const Color kDBackgroundColor = Color(0xFF292D32);

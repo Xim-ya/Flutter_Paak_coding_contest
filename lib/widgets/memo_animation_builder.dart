@@ -42,13 +42,7 @@ class MemoAnimationBuilder extends StatelessWidget {
               ),
             ],
           ),
-          child: MemoItem(
-              memo: Memo(
-                  isSecret: selectedItem.isSecret,
-                  title: selectedItem.title,
-                  content: selectedItem.content,
-                  date: selectedItem.date,
-                  id: selectedItem.id)),
+          child: MemoItem(memoVM: memoVM, index: index),
         ),
       ),
     );

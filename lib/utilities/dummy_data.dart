@@ -16,20 +16,20 @@ const Duration listShowItemDuration = Duration(milliseconds: 250);
 /* Memo Sample Data (MainScreen > MemoList) */
 final List<Memo> memoItems = [
   Memo(
-    id: const Uuid(),
+    id: 0,
     title: "제목1",
     content: "내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1, 내용이 들어갑니다1",
     date: DateTime.now(),
     isSecret: false,
   ),
   Memo(
-    id: const Uuid(),
-    content: "내용이 들어갑니다2, 내용이 들어갑니다2, 내용이 들어갑니다2, 내용이 들어갑니다2",
+    id: 1,
+    content: "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
     date: DateTime.now(),
     isSecret: true,
   ),
   Memo(
-    id: const Uuid(),
+    id: 2,
     title: "제목3",
     content: "내용이 들어갑니다1, 내용이 들어갑니다3, 내용이 들어갑니다3, 내용이 들어갑니다1",
     date: DateTime.now(),

@@ -9,7 +9,7 @@ class MemoCore {
 }
 
 class Memo {
-  final Uuid id;
+  final int id;
   final String? title;
   final String content;
   final DateTime date;

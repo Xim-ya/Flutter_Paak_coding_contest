@@ -1,54 +1,36 @@
-import 'package:flutter/cupertino.dart';
 import 'dart:io' show Platform;
 import 'package:park_coding_contest_memo_app/utilities/index.dart';
+import 'package:park_coding_contest_memo_app/widgets/edit_save_toggle_button.dart';
+import 'package:park_coding_contest_memo_app/widgets/multiple_alert_dialogs.dart';
 
 class AddEditScreen extends HookWidget {
   final MemoVM memoVM;
-  const AddEditScreen({Key? key, required this.memoVM}) : super(key: key);
+  final bool isEditApproach;
+  const AddEditScreen(
+      {Key? key, required this.memoVM, required this.isEditApproach})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    void _showDialog() {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return Platform.isIOS
-              ? CupertinoAlertDialog(
-                  title: const Text("메모를 한 글자 이상 입력하세요!"),
-                  actions: <Widget>[
-                    CupertinoDialogAction(
-                      child: new Text("확인"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                )
-              : AlertDialog(
-                  title: const Text("메모를 한 글자 이상 입력하세요!"),
-                  actions: <Widget>[
-                    CupertinoDialogAction(
-                      child: new Text("확인"),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                );
-        },
-      );
-    }
-
     // State Variables
-    final _titleInput = useState<String?>(null);
-    final _contentInput = useState<String>("");
-    final _isLocked = useState<bool>(false);
+    final _titleInput =
+        useState<String?>(isEditApproach ? memoVM.selectedMemo?.title : null);
+    final _contentInput =
+        useState<String>(isEditApproach ? memoVM.selectedMemo!.content : "");
+    final _isLocked =
+        useState<bool>(isEditApproach ? memoVM.selectedMemo!.isSecret : false);
+    final _canEdit = useState<bool>(isEditApproach ? false : true);
 
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: FormatDateText(
-            date: DateTime.now(), textStyle: FontStyles().dateAppbarTitle),
+        title: GestureDetector(
+          onTap: () {
+            print(memoVM.selectedMemo!.content);
+          },
+          child: FormatDateText(
+              date: DateTime.now(), textStyle: FontStyles().dateAppbarTitle),
+        ),
         actions: [
           /* Lock & Unlock Button */
           Container(
@@ -72,38 +54,43 @@ class AddEditScreen extends HookWidget {
           ),
           /* Edit Save Button */
           Builder(builder: (context) {
+            final Memo handledMemo = Memo(
+                title: _titleInput.value,
+                isSecret: _isLocked.value,
+                id: 4,
+                content: _contentInput.value,
+                date: DateTime.now());
             final isContentFilled = _contentInput.value.isNotEmpty;
-            return Container(
-              alignment: Alignment.center,
-              child: NeumorphicButton(
-                onPressed: () {
-                  if (isContentFilled) {
-                    memoVM.addMemo(Memo(
-                        title: _titleInput.value,
-                        isSecret: _isLocked.value,
-                        id: const Uuid(),
-                        content: _contentInput.value,
-                        date: DateTime.now()));
-                    Get.back();
-                  } else {
-                    _showDialog();
-                  }
-                },
-                style: NeumorphicStyle(
-                    depth: isContentFilled ? 2 : 0,
-                    boxShape: const NeumorphicBoxShape.circle()),
-                child: SizedBox(
-                  height: 20,
-                  child: Align(
-                    child: Text(
-                      "저장",
-                      style: TextStyle(
-                          color: isContentFilled ? kLPurpleColor : Colors.grey),
+            return isEditApproach
+                ? EditSaveToggleButton(canEdit: _canEdit, memo: handledMemo)
+                : Container(
+                    alignment: Alignment.center,
+                    child: NeumorphicButton(
+                      onPressed: () {
+                        if (isContentFilled) {
+                          memoVM.addMemo(handledMemo);
+                          Get.back();
+                        } else {
+                          MultipleAlertDialogs.addEventDialog(context);
+                        }
+                      },
+                      style: NeumorphicStyle(
+                          depth: isContentFilled ? 2 : 0,
+                          boxShape: const NeumorphicBoxShape.circle()),
+                      child: SizedBox(
+                        height: 20,
+                        child: Align(
+                          child: Text(
+                            "저장",
+                            style: TextStyle(
+                                color: isContentFilled
+                                    ? kLPurpleColor
+                                    : Colors.grey),
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            );
+                  );
           }),
         ],
         leading: Container(
@@ -137,7 +124,9 @@ class AddEditScreen extends HookWidget {
                   child: Column(
                     children: <Widget>[
                       /* Title */
-                      TextField(
+                      TextFormField(
+                        enabled: _canEdit.value,
+                        initialValue: _titleInput.value,
                         onChanged: (String inputs) {
                           _titleInput.value = inputs;
                         },
@@ -162,6 +151,10 @@ class AddEditScreen extends HookWidget {
                         child: Container(
                           margin: EdgeInsets.only(bottom: 300),
                           child: TextFormField(
+                            enabled: _canEdit.value,
+                            initialValue: isEditApproach
+                                ? memoVM.selectedMemo!.content
+                                : "",
                             onChanged: (inputs) {
                               _contentInput.value = inputs;
                             },
