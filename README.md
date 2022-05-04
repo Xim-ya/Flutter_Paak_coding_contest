@@ -1,16 +1,50 @@
-# park_coding_contest_memo_app
+## 목차
+- [소개](#소개)
+- [요약](#요약)
+- [트러블 슈팅](#트러블-슈팅)
+- [학습 키워드](#학습-키워드)
 
-A new Flutter project.
 
-## Getting Started
+## 소개
+제 1회 <a href="https://www.youtube.com/c/%EA%B0%9C%EB%B0%9C%ED%95%98%EB%8A%94%EC%A0%95%EB%8C%80%EB%A6%AC/community">빡코딩콘<a/>  
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## 요약
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+| Index      | Detail                                                                                                                                                                                                  |
+|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 시연 영상      | https://youtu.be/GLldHXqWSwI                                                                                                                                                                            |
+| 구현 기간      | **2022.04.28 ~ 2022.05.01**                                                                                                                                                                             |
+| 기술 스택      | - Flutter, Hive, Getx, FlutterHook                                                                                                                                                                      |
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+👩🏼‍💻화면구성:
+- 메모 목록화면
+- 메모 상세화면
+- 메모 편집, 작성 화면
+
+⭐️기능:
+- 사용자는 작성한 메모 목록을 볼 수 있어야함
+- 메모 목록에 노출되는 메모는 작성된 메모문장 한줄만 노출된다.
+- 메모 작성 페이지에서 메모 작성이 가능하다.
+- 메모를 작성할때 작성된 메모의 글자수가 노출된다.
+- 사용자는 메모를 검색할 수 있어야 한다.
+- 사용자는 메모를 편집할 수 있어야 한다.
+- 사용자는 메모를 삭제할 수 있어야 한다.
+- 작성된 메모는 비밀메모로 변경이 가능하다.
+
+🔐비밀메모:
+- 메모목록에 메모 문장이 노출되지 않는다.
+- 메모 목록 화면에는 “비밀메모 입니다” 혹은 잠금 표시로 노출된다.
+- 메모 목록에서 상세보기클릭시 비밀메모인 경우 암호를 입력해야 메모 상세 화면으로 이동이 가능하다.
+- 일반메모는 메모 상세화면에서 비밀메모로 변환이 가능하다.
+- 일반메모에서 비밀메모로 설정시 비밀번호 입력창이 뜨고 비밀번호를 입력하면 비밀메모로 바뀐다.
+
+- 위 요건들 포함 추가 기능 및 화면 자유롭게 추가가능 
+
+
+
+
+
+
+
+
